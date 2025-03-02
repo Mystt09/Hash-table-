@@ -26,6 +26,7 @@ int main() {
         texts[n] = line;
         n++;
     }
+    
     // WARNING: End of the tokenizer, DO NOT change this part!
 
     // By this point, k is the # of slots, and n is the # of tokens to fit in
@@ -38,11 +39,36 @@ int main() {
 
     // Your time to shine starts now
 
+   
+    
+    
+    HashTable* createHashTable = new HashTable(k); 
+
+    //int arraySize = sizeof(texts) / sizeof(texts[0]); 
+
+    for(int i = 0; i < n; i ++){
+
+      createHashTable->insertItem(texts[i]);
+
+    }
+
+    delete createHashTable;
+    
+
+
+    // the strings are in the text[] array 
+
+    // maybe we could iterate through the array one by one, and hash it while it takes in each string from the array 
+
+
     cout << "==== Printing the contents of the first 5 slots ====" << endl;
+
+    createHashTable->printTable();
 
     cout << "==== Printing the slot lengths ====" << endl;
 
-    cout << "==== Printing the standard variance =====" << endl;
+    cout << "==== Printing the standard deviation =====" << endl;
 
     return 0;
 }
+
