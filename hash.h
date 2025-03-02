@@ -1,106 +1,64 @@
 #include <iostream>
 #include <string>
-#include "hash.h"
+#include <cmath>
+#include <cstring> // check if this one is allowed 
+
+#ifndef hash_h  
+#define hash_h
+
+// You are free to use additional libraries as long as it's not PROHIBITED per instruction.
 
 using namespace std;
 
+//int hash_function(string text);
 
-HashTable::HashTable(int sizeK) {
+struct item { // this is the same as Node 
 
-    tableSize = sizeK; 
+    string key;  // the value from the hash function
 
-    table = new item*[tableSize]; 
+    item* next;  // pointer that points to the next item of the list 
 
-    for (int i = 0; i < tableSize; i++) {
+    // when we point to item, we are talking about the string 
 
-        table[i] = nullptr;
+    item(string k) : key(k), next(nullptr) {} 
+   
 
-    } 
-}
-     
-// Destructor: Free memory
-HashTable::~HashTable() {
+};
 
-    for (int i = 0; i < tableSize; i++) {
-        item* temp = table[i];
 
-        while (temp) {
 
-            item* next = temp->next;
-            delete temp;
-            temp = next;
+class HashTable { // hash class
 
-        }
+    private:
 
-    }
-    delete[] table; // Free the array
-}
+     int tableSize; // given by the first line of the input, changes depending on the input file
+     item** table;
+
+   
+
+    public:
+ 
     
-void HashTable::insertItem(string text) {
-
-    int index = hashFunction(text); 
-
-    item* newItem = new item(text);
-    newItem->next = table[index];
-    table[index] = newItem;
-
-       }
-
-       //void removeItem(int key); 
-       //string searchTable(int key); 
-
-void HashTable::printTable(){
-
-    for (int i = 0; i < tableSize; i++) {
-        printf("Slot %d: ", i);  // Print slot index
-
-        item* temp = table[i];
-        while (temp) {
-            printf("%d -> ", temp->key);  // Print the key
-            temp = temp->next;
-        }
-        printf("NULL\n");  // End of chain
-    }
 
 
-       }
+    HashTable(int sizeK);// initializes a hash table object when it gets created, implement in cpp 
+        //int tableSize; 
+
+        ~HashTable(); 
+        //hash();
+
+        //bool isEmpty() const;
 
 
-int HashTable::hashFunction(string text) {
-    // Implement your own hash function here
+       int hashFunction(string text); // this was already provided
+       void insertItem(string text); 
+       void removeItem(int key); 
+       string searchTable(int key); 
+       void printTable();
 
-    // get the first char of the letter 
-    char letter = text[0];  // stores the first char 
 
-    int ascii = (int)letter; // gets the ascii of that char 
 
-    int lowerCaseA = (int)'a';
-    int upperCaseA = (int)'A';
+};
 
-    int lowerCaseZ = (int) 'z';
-    int upperCaseZ = (int) 'Z'; 
-
-    //  x > 97 and x < 123 subtract by ascii of 'a' -> 97
-    // x > 65 x < 91 subtract by ascii of 'A' -> 65
-
-    if (ascii > lowerCaseA && ascii < lowerCaseZ ) { // checks if the first letter is lower case 
-
-        // subtract the ascii by ascii of 'a' 
-
-        int hashValue = ascii - lowerCaseA; 
-
-        return hashValue % tableSize;
-
-    }
-
-    if (ascii > upperCaseA && ascii < upperCaseZ ) { // checks if the first letter is upper case 
-
-        int hashValue = ascii - upperCaseA; 
-
-        return hashValue % tableSize;
-
-    }
-    // check if the ascii is upper or lower case 
-
-    return 1;
-}
+#endif
+//HashTable* createHashTable(int size);  // this will make a hash table with the size that was found in main 
