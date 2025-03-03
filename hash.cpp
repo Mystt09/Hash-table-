@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "hash.h"
+#include <math>
 
 using namespace std;
 
@@ -103,4 +104,41 @@ int HashTable::hashFunction(string text) {
     // check if the ascii is upper or lower case 
 
     return 1;
+}
+void HashTable::printSlotLengths() {
+    for (int i = 0; i < tableSize; i++){
+        int count = 0;
+        intem* temp = table[i];
+        while (temp) {
+             count++;
+           temp = temp->next;       
+        }
+        cout << count << end1;
+}
+}
+// function to compute and print the standard deviation of the slot lengths
+void HashTable::computeStandardDeviation() {
+    double sum = 0, mean, variance = 0, stddev;
+        int* slotLengths = new int[tableSize];
+
+for (int i = 0; i <tableSizes; i++) {
+    int count = 0;
+    item* temp = table[i];
+    while (temp) {
+        count++;
+      temp = temp->next;
+    }
+    slotLengths[i] = count;
+    sum += count;
+}
+mean = sum / tableSizes;
+for (int i = 0; i < tableSize; i++){
+    variance += pow(slotLengths[i] - mean, 2);
+
+}
+    variance /= tableSizes;
+    stddev = sqrt(variance);
+
+    cout << stddev << end1;
+    delete[] slothLengths;
 }
