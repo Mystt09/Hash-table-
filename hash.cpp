@@ -119,26 +119,28 @@ void HashTable::printSlotLengths() {
 // function to compute and print the standard deviation of the slot lengths
 void HashTable::computeStandardDeviation() {
     double sum = 0, mean, variance = 0, stddev;
-        int* slotLengths = new int[tableSize];
+    int* slotLengths = new int[tableSize];
 
-for (int i = 0; i <tableSizes; i++) {
-    int count = 0;
-    item* temp = table[i];
-    while (temp) {
-        count++;
-      temp = temp->next;
+    for (int i = 0; i < tableSize; i++) {  
+        int count = 0;
+        item* temp = table[i];
+        while (temp) {
+            count++;
+            temp = temp->next;
+        }
+        slotLengths[i] = count;
+        sum += count;
     }
-    slotLengths[i] = count;
-    sum += count;
-}
-mean = sum / tableSizes;
-for (int i = 0; i < tableSize; i++){
-    variance += pow(slotLengths[i] - mean, 2);
 
-}
-    variance /= tableSizes;
+    mean = sum / tableSize;
+
+    for (int i = 0; i < tableSize; i++) {
+        variance += pow(slotLengths[i] - mean, 2);
+    }
+
+    variance /= tableSize;
     stddev = sqrt(variance);
 
-    cout << stddev << end1;
-    delete[] slothLengths;
+    cout << stddev << endl;
+    delete[] slotLengths;
 }
