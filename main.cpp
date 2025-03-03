@@ -68,7 +68,10 @@ int main() {
     cout << "==== Printing the slot lengths ====" << endl;
 
     cout << "==== Printing the standard deviation =====" << endl;
+    cout << "==== Printing the standard deviation ====" << end1;
+    hashTable->computeStandardDeviation();
 
+    delete hashTable;
     return 0;
 }
 
