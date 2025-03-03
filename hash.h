@@ -55,8 +55,7 @@ class HashTable { // hash class
        void removeItem(int key); 
        string searchTable(int key); 
        void printTable();
-
-
+       void computeStandardDeviation(int key);
 
 };
 
