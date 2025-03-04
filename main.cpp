@@ -52,10 +52,6 @@ int main() {
 
     }
 
-    delete createHashTable;
-    
-
-
     // the strings are in the text[] array 
 
     // maybe we could iterate through the array one by one, and hash it while it takes in each string from the array 
@@ -67,9 +63,14 @@ int main() {
 
     cout << "==== Printing the slot lengths ====" << endl;
 
-     cout << "==== Printing the standard deviation ====" << endl;
+    createHashTable->printSlotLengths();
+
+    cout << "==== Printing the standard deviation =====" << endl;
+
     createHashTable->computeStandardDeviation();
 
     delete createHashTable;
+
     return 0;
 }
+
