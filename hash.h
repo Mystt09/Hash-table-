@@ -14,25 +14,25 @@ using namespace std;
 
 struct item { // this is the same as Node 
 
-    string key;  // the value from the hash function
+    string key;  // the string from the hash function
 
-    item* next;  // pointer that points to the next item of the list 
+    item* next;  // pointer that will point to null 
 
-    // when we point to item, we are talking about the string 
+    // the item is a string, with a pointer that points to null, as it acts as a single Node in its single list 
 
-    item(string k) : key(k), next(nullptr) {} 
-   
+
+        // initializes the key, to be the string input, and have next point to null 
+        item(string k) { this->key = k; this->next = nullptr; }  
+
 
 };
-
-
 
 class HashTable { // hash class
 
     private:
 
      int tableSize; // given by the first line of the input, changes depending on the input file
-     item** table;
+     item** table; // double pointer, an array of pointers that have pointer inside, to point to the next item of the list 
 
    
 
@@ -41,10 +41,10 @@ class HashTable { // hash class
     
 
 
-    HashTable(int sizeK);// initializes a hash table object when it gets created, implement in cpp 
+    HashTable(int sizeK);// initializes a hash table object when it gets created, implemented in cpp 
         //int tableSize; 
 
-        ~HashTable(); 
+        ~HashTable(); // deconstructor 
         //hash();
 
         //bool isEmpty() const;
@@ -52,10 +52,14 @@ class HashTable { // hash class
 
        int hashFunction(string text); // this was already provided
        void insertItem(string text); 
-       void removeItem(int key); 
-       string searchTable(int key); 
+       //void removeItem(int key); 
+       //string searchTable(int key); 
+       void computeStandardDeviation();
+       void printSlotLengths();
        void printTable();
-      void computeStandardDeviation();
+
+
+
 };
 
 #endif
